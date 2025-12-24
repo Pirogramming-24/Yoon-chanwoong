@@ -1,0 +1,106 @@
+:root{
+    --bg_color:#000000;
+    --card_bg:#333333;
+    --font_color:#FDFDFD;
+    --non_major:#C54322;
+    --major:#2288B6;
+}
+
+body{
+    background-color: var(--bg_color);
+}
+
+.card_box{
+    display:grid;
+    grid-template-columns: repeat(3,1fr); gap:16px;
+    padding:20px;
+}
+
+.card{
+    background-color: var(--card_bg); color:var(--font_color);
+    height:138px;
+    padding:16px; border-radius: 12px;
+    transition:transform 0.1s ease-out;
+}
+
+.card:hover{
+    cursor:pointer;
+    transform:translateY(-2px);
+}
+
+.card .up{
+    display:flex; flex-flow:row nowrap;
+    justify-content: space-between;
+    height:70px;
+}
+
+.card .up .square{
+    display:flex; flex-flow:row nowrap;
+}
+
+.card .up img{
+    height:70px; width:70px;
+    border-radius:50%;
+}
+
+.card .up .person_info{
+    padding-left:20px;
+    display:flex; flex-flow:column nowrap;
+    justify-content: space-evenly;
+}
+
+.card .up .person_info .non_major{
+    background-color: var(--non_major);
+    padding:5px; border-radius: 5px;
+}
+
+.card .up .person_info .major{
+    background-color: var(--major);
+    padding:5px; border-radius: 5px;
+}
+/* ---------------- 햄버거 ---------------- */
+.card .up .ham_box{
+    height:20px; width:20px;
+    right:0;
+    display:flex;
+    flex-direction: column;
+    justify-content:space-between;
+    overflow: hidden;
+}
+
+.card .up .ham_box .ham_bar{
+    background-color: gray;
+    height:16%; width:100%;
+    transition: transform 0.3s ease-out;
+}
+
+.card:hover .up .ham_box .ham_bar.top{
+    transform: translateX(-50%);
+}
+
+.card:hover .up .ham_box .ham_bar.bottom{
+    transform: translateX(50%);
+}
+
+/* ---------------- 다운 ---------------- */
+
+.card .down{
+    height:calc(100% - 70px);
+    display:flex; align-items: center;
+}
+
+.card .down p{
+    margin: auto 0px;
+}
+
+@media(max-width:850px){
+    .card_box{
+    grid-template-columns: repeat(2,1fr);
+}
+}
+
+@media(max-width:600px){
+    .card_box{
+    grid-template-columns: repeat(1,1fr);
+}
+}
