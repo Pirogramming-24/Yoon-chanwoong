@@ -6,12 +6,17 @@ body{
     box-sizing:border-box;
 }
 
+main{
+    width:100%;
+}
+
 h3,h4,p{
     margin:0;
 }
 
 a{
     text-decoration:none;
+    color:#FDFDFD;
 }
 
 ol,ul{
