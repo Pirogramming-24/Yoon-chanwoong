@@ -1,0 +1,241 @@
+:root{
+    --bg_color:#000000;
+    --card_bg:#333333;
+    --font_color:#FDFDFD;
+    --font_sub_color:#909090;
+    --non_major:#C54322;
+    --major:#2288B6;
+    --green_color:#05CB0D;
+}
+
+
+header{
+    position:fixed; top:0;
+    height:90px; width:100%;
+    display:flex; justify-content: center;
+    background: linear-gradient(to bottom,var(--bg_color),var(--bg_color) 60%,transparent);
+    z-index: 1;
+}
+
+header nav{
+    height:100%; width:100%; max-width: 1200px;
+    display:flex; justify-content: space-between; align-items: center;
+    padding:0 40px;
+}
+
+header nav img{
+    height:40px; width:40px;
+}
+
+header nav ul{
+    display:flex;
+}
+
+header nav ul li a{
+    font-size: 22px;
+    padding:10px; margin-left:10px;
+    color:var(--font_color)
+}
+
+header nav ul li a:hover{
+    color:var(--green_color)
+}
+
+/* ---------------- body ---------------- */
+
+body{
+    background-color: var(--bg_color);
+}
+
+.card_box{
+    display: flex; flex-flow: column nowrap;
+    align-items: center;
+    padding:30px; margin-top: 90px;
+}
+
+.card{
+    background-color: var(--card_bg);
+    height: 142px; width:100%; max-width: 1120px;
+    display:flex;
+    padding:20px; border-radius: 10px; margin-bottom: 20px;
+}
+
+.card:hover{
+    cursor:pointer;
+    transform: translateY(-2px);
+}
+
+/* -------------------left------------------- */
+
+.card .left{
+    background-color: var(--font_color);
+    height:100%; width:150px;
+    display:flex; align-items: center; justify-content: center;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.card .left img{
+    transition: transform 0.3s ease-out;
+    height:100%;
+}
+
+.card:hover .left img{
+    transform: scale(1.2);
+}
+
+/* -------------------right------------------- */
+.card .right{
+    width:85%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.card .right .info{
+    padding-left: 20px;
+}
+.card .right .info .title{
+    color:var(--font_color)
+}
+
+.card .right .info .description{
+    padding-top: 8px;
+    color:var(--font_sub_color)
+}
+
+.card .right .info .members{
+    padding-top:15px;
+    display: flex; 
+}
+
+.card .right .info .members .member{
+    background-color: gray; border-radius: 5px;
+    margin-right:7px; padding:5px;
+}
+
+.card .right .info .members .member:nth-child(1){
+    background-color: var(--major);
+    color:#FDFDFD;
+}
+
+/* ------------------- 햄버거 ------------------- */
+
+.card .right .ham_box{
+    height:20px; width:20px;
+    right:0;
+    display:flex;
+    flex-direction: column;
+    justify-content:space-between;
+    overflow: hidden;
+}
+
+.card .right .ham_box .ham_bar{
+    background-color: var(--font_sub_color);
+    height:16%; width:100%;
+    transition: transform 0.3s ease-out;
+}
+
+.card:hover .right .ham_box .ham_bar.top{
+    transform: translateX(-50%);
+}
+
+.card:hover .right .ham_box .ham_bar.bottom{
+    transform: translateX(50%);
+}
+/* ------------------- footer ------------------- */
+footer.high{
+    height:190px; width:100%;
+    background-color: var(--card_bg);
+    padding:40px 100px;
+    display: flex; align-items: center; justify-content: space-between;
+    color:var(--font_color)
+}
+
+footer .chat_apps{
+    display: flex; align-items: center;
+}
+
+footer .logo_box{
+    height:30px; width:30px;
+    background-color: var(--bg_color);
+    display: flex; align-items: center; justify-content: center;
+    margin:5px 10px; border-radius: 50%;;
+}
+
+footer.high .approach #rule{
+    display: block;
+}
+
+footer .approach .email{
+    display: flex; align-items: center; justify-content: space-between;
+}
+
+footer.high .approach #rule:hover,footer .logo_box:hover{
+    transform: translateY(-2px);
+}
+
+footer.high .lists ul{
+    display: flex; align-items: center; justify-content: space-evenly;
+}
+
+footer.high .lists ul li{
+    padding:0 23px; border-right:1px solid var(--font_color)
+}
+
+footer.high .lists ul li:last-child{
+    border-right:none;
+}
+
+footer.high .lists ul li:hover{
+    transform: translateY(-2px);
+}
+
+footer.low{
+    height:44px; width:100%;
+    background-color: #282828;
+    display: flex; align-items: center; justify-content: center;
+    color:var(--font_color)
+}
+
+/* ------------------- 미디어 쿼리 ------------------- */
+@media(max-width:650px){
+    .card{
+        padding-top:40px;
+        position:relative;
+        height:335px;
+        flex-flow: column nowrap;
+        align-items: center;
+    }
+
+    .card .left{
+        width:250px;
+        height:160px;
+    }
+
+    .card .right {
+        width:100%;
+        justify-content: center;
+    }
+
+    .card .right .info{
+        padding:0;
+    }
+
+    .card .right .info .title{
+        margin-top:30px
+    }
+
+    .card .right .info .title,.card .right .info .description{
+        text-align: center;
+    }
+
+    .card .right .info .members{
+        padding-top:10px;
+    }
+
+    .card .right .ham_box{
+        position:absolute;
+        top:20px;
+        right: 20px;
+    }
+}
