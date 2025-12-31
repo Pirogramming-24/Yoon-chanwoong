@@ -11,27 +11,31 @@
 <body>
     <header>
         <h1>my Movie reviews</h1>
-        <a href="{% url 'review_write_modify'%}">Add a New review</a>
+        <a href="{% url 'review_write'%}">Add a New review</a>
     </header>
     <main>
         <ul>
-            {% for review in reviews %}
             <div id="review_boxes">
+            {% for review in reviews %}
                 <div class="review_cell">
                     <div class="review_top">
                         <img src="{%static 'images/f1_theMovie.webp'%}" alt="">
                     </div>
                     <div class="review_bottom">
-                        <h3>{{review.title}}</h3><!-- 제목 -->
+                        <a href="{%url 'review_modify' review.id%}">{{review.title}}</a><!-- 제목 -->
                         <p>개봉년도 : {{review.title}}</p><!-- 개봉년도 -->
                         <p>장르 : {{review.genre}}</p><!-- 장르 -->
                         <p>별점 : {{review.score}}</p><!-- 별점 -->
+                        <form method="POST">
+                            {% csrf_token %}
+                            <button type="submit" name="delete" value="{{review.id}}">삭제</button>
+                        </form>
                     </div>
                 </div>
-            </div>
             {% empty %}
                 <li>등록된 리뷰가 없습니다.</li>
             {% endfor %}
+            </div>
         </ul>
     </main>
 </body>

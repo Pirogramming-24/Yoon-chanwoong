@@ -1,16 +1,30 @@
-{% load static %}
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Documents</title>
     <link rel="stylesheet" href="{%static 'styles/reset.css'%}">
 </head>
 <body>
-    <header>
-        <h1>my Movie reviews</h1>
-        <button>Add a new review</button>
-    </header>
+    <section id="review_box">
+        <h1 id="title">{{reviews.title}}</h1>
+        <div id="informations">
+            <img src="" alt="">
+            <div class="movie_details">
+                <h5>개봉년도 : {{reviews.year}}</h5>
+                <h5>감독 : {{reviews.director}}</h5>
+                <h5>주연 : {{reviews.hero}}</h5>
+                <h5>장르 : {{reviews.genre}}</h5>
+                <h5>별점 : {{reviews.score}}</h5>
+                <h5>러닝타임 : {{reviews.running_time}}</h5>
+            </div>
+            <div id="opinion_box">
+                <p id="opinion">{{reviews.opinion}}</p>
+            </div>
+        </div>
+        <div id="reivew_content"></div>
+    </section>
 </body>
 </html>

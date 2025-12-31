@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{%static 'styles/reset.css'%}">
+</head>
+<body>
+    <header>
+        <h1>my Movie reviews</h1>
+    </header>
+    <main>
+        <h1>movie review</h1>
+        <form action="" method="POST">
+            {%block content%}
+
+            {% endblock%}
+        </form>
+
+        <hr>
+        <a href="{% url 'review_lists' %}">목록으로 돌아가기</a>
+    </main>
+</body>
+</html>
