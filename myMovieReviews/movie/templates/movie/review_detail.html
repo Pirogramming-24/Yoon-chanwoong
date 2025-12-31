@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <h1>my <span style="color:#E63F65;">Movie</span> reviews</h1>
+        <a href="{% url 'review_lists'%}"><h1>my <span style="color:#E63F65;">Movie</span> reviews</h1></a>
         <a href="{% url 'review_write'%}">Add a New review</a>
     </header>
     <section id="review_box">
@@ -25,22 +25,20 @@
 
         <div class="movie_info_wrapper">
             <div class="poster_area">
-                <img src="{%static 'images/f1_theMovie.webp'%}" alt="포스터"> </div>
+                <img src="{%static 'images/poster1.jpg'%}" alt="포스터"> 
+            </div>
             <div class="movie_details">
                 <h5>개봉년도 : {{review.year}}</h5>
                 <h5>감독 : {{review.director}}</h5>
                 <h5>주연 : {{review.hero}}</h5>
                 <h5>장르 : {{review.genre}}</h5>
                 <h5>별점 : {{review.score}}</h5>
-                <h5>러닝타임 : {{review.running_time}}</h5>
+                <h5>러닝타임 : {{review.running_hour}}시간 {{review.running_minute}}분</h5>
             </div>
         </div>
 
         <div id="opinion_box">
             <p id="opinion">{{review.opinion}}</p>
-        </div>
-        <div class="footer_nav">
-            <a href="{% url 'review_lists' %}">목록으로 돌아가기</a>
         </div>
     </section>
 </body>

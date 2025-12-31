@@ -10,7 +10,8 @@
 </head>
 <body>
     <header>
-        <h1>my Movie reviews</h1>
+        <a href="{% url 'review_lists'%}"><h1>my <span style="color:#E63F65;">Movie</span> reviews</h1></a>
+        <a href="{% url 'review_write'%}">Add a New review</a>
     </header>
     <main class="form-container">
         <div class="form-box">
@@ -20,9 +21,6 @@
                 {% block content %}
                 {% endblock %}
             </form>
-        </div>
-        <div class="form-footer">
-            <a href="{% url 'review_lists' %}">목록으로 돌아가기</a>
         </div>
     </main>
 </body>

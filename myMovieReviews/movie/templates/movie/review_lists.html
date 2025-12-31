@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <h1>my <span style="color:#E63F65;">Movie</span> reviews</h1>
+        <a href="{% url 'review_lists'%}"><h1>my <span style="color:#E63F65;">Movie</span> reviews</h1></a>
         <a href="{% url 'review_write'%}">Add a New review</a>
     </header>
     <main>
@@ -18,7 +18,7 @@
         {% for review in reviews %}
             <div class="review_cell">
                 <div class="review_top">
-                    <img src="{%static 'images/f1_theMovie.webp'%}" alt="">
+                    <img src="{%static 'images/poster1.jpg'%}" alt="">
                 </div>
                 <div class="review_bottom">
                     <div id="a_box">
