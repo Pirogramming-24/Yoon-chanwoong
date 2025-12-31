@@ -6,25 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Documents</title>
     <link rel="stylesheet" href="{%static 'styles/reset.css'%}">
+    <link rel="stylesheet" href="{%static 'styles/review_detail.css'%}">
 </head>
 <body>
+    <header>
+        <h1>my <span style="color:#E63F65;">Movie</span> reviews</h1>
+        <a href="{% url 'review_write'%}">Add a New review</a>
+    </header>
     <section id="review_box">
-        <h1 id="title">{{reviews.title}}</h1>
-        <div id="informations">
-            <img src="" alt="">
+        <div id="title_box">
+            <h1 id="title">{{review.title}}</h1>
+            <form method="POST">
+                {%csrf_token%}
+                <a href="{%url 'review_modify' review.id%}">수정</a>
+                <button type="submit" name="delete" value="delete">삭제</button>
+            </form>
+        </div>
+
+        <div class="movie_info_wrapper">
+            <div class="poster_area">
+                <img src="{%static 'images/f1_theMovie.webp'%}" alt="포스터"> </div>
             <div class="movie_details">
-                <h5>개봉년도 : {{reviews.year}}</h5>
-                <h5>감독 : {{reviews.director}}</h5>
-                <h5>주연 : {{reviews.hero}}</h5>
-                <h5>장르 : {{reviews.genre}}</h5>
-                <h5>별점 : {{reviews.score}}</h5>
-                <h5>러닝타임 : {{reviews.running_time}}</h5>
-            </div>
-            <div id="opinion_box">
-                <p id="opinion">{{reviews.opinion}}</p>
+                <h5>개봉년도 : {{review.year}}</h5>
+                <h5>감독 : {{review.director}}</h5>
+                <h5>주연 : {{review.hero}}</h5>
+                <h5>장르 : {{review.genre}}</h5>
+                <h5>별점 : {{review.score}}</h5>
+                <h5>러닝타임 : {{review.running_time}}</h5>
             </div>
         </div>
-        <div id="reivew_content"></div>
+
+        <div id="opinion_box">
+            <p id="opinion">{{review.opinion}}</p>
+        </div>
+        <div class="footer_nav">
+            <a href="{% url 'review_lists' %}">목록으로 돌아가기</a>
+        </div>
     </section>
 </body>
 </html>

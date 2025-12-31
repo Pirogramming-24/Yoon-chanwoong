@@ -6,21 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="{%static 'styles/reset.css'%}">
+    <link rel="stylesheet" href="{%static 'styles/review_modify.css'%}">
 </head>
 <body>
     <header>
         <h1>my Movie reviews</h1>
     </header>
-    <main>
-        <h1>movie review</h1>
-        <form action="" method="POST">
-            {%block content%}
-
-            {% endblock%}
-        </form>
-
-        <hr>
-        <a href="{% url 'review_lists' %}">목록으로 돌아가기</a>
+    <main class="form-container">
+        <div class="form-box">
+            <h1 class="form-title">Movie review 🍿</h1>
+            <hr class="title-hr">
+            <form action="" method="POST">
+                {% block content %}
+                {% endblock %}
+            </form>
+        </div>
+        <div class="form-footer">
+            <a href="{% url 'review_lists' %}">목록으로 돌아가기</a>
+        </div>
     </main>
 </body>
 </html>

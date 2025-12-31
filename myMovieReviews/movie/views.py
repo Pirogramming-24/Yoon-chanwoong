@@ -6,17 +6,17 @@ def review_lists(request):
     context = {
         'reviews' : reviews
     }
-    if request.method == 'POST':
-        action = request.POST.get('delete')
-        reviews.filter(id=action).delete()
     return render(request,"movie/review_lists.html",context)
 
-def review_detail(request):
-    review_id = 2
-    reviews = Reviews.objects.get(id = review_id)
+def review_detail(request,pk):
+    review = Reviews.objects.get(id = pk)
     context = {
-         'reviews' : reviews
+         'review' : review
     }
+    if request.method == 'POST' and request.POST.get('delete') == 'delete':
+        review.delete()
+        return redirect('review_lists')
+        
     return render(request,"movie/review_detail.html",context)
 
 def review_write(request):
@@ -63,6 +63,7 @@ def review_modify(request,pk):
         review.director = request.POST.get('director')
         review.hero = request.POST.get('title')
         review.save()
+        return redirect('review_lists')
     return render(request, "movie/modify.html",context)
 
 def delete(request):

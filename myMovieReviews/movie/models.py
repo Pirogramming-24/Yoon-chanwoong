@@ -9,7 +9,7 @@ class Reviews(models.Model):
     genre = models.CharField(max_length=100, default='empty')
     score = models.FloatField(default=0.0)  
     running_time = models.CharField(max_length=100, default='empty')
-    opinion = models.CharField(max_length=100, default='empty')
+    opinion = models.TextField(default='empty')
 
     def __str__(self):
         return self.title

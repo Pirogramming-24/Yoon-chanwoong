@@ -1,0 +1,93 @@
+body {
+    background-color: #f0f0f0;
+    font-family: 'Malgun Gothic', sans-serif;
+}
+.form-container {
+    display: flex;
+    flex-direction: column; align-items: center;
+    padding: 5rem 0;
+}
+
+.form-box {
+    background-color: #f7f7f7;
+    width: 60rem;
+    padding: 4rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.2rem 1rem rgba(0,0,0,0.05);
+}
+
+.form-title {
+    text-align: center;
+    font-size: 2.4rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.title-hr {
+    border: 0; border-top: 1px solid #ccc;
+    margin-bottom: 3rem;
+}
+.form-box p {
+    display: flex; align-items: center;
+    font-size: 1.6rem; font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+.form-box p {
+    color: #333;
+}
+input[type="text"],
+input[type="number"],
+select {
+    border: 1px solid #ccc; border-radius: 0.4rem;
+    padding: 0.5rem 0.8rem;
+    font-size: 1.4rem;
+    margin-left: 1rem;
+}
+input[name="title"], 
+input[name="director"], 
+input[name="hero"] {
+    width: 25rem;
+}
+
+input[name="year"],
+input[name="score"],
+input[name="running_time"] {
+    width: 10rem;
+}
+textarea {
+    width: 100%;
+    height: 25rem;
+    border: 1px solid #ccc;
+    border-radius: 0.4rem;
+    padding: 1rem;
+    font-size: 1.4rem;
+    resize: none;
+    margin-top: 0.5rem;
+    margin-bottom: 2rem;
+    display: block;
+}
+button[type="submit"] {
+    display: block;
+    margin-left: auto;
+    background-color: #fff;
+    border: 1px solid #bbb;
+    padding: 0.6rem 1.4rem;
+    border-radius: 0.4rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+    box-shadow: 0 0.1rem 0.3rem rgba(0,0,0,0.1);
+}
+
+button[type="submit"]:hover {
+    background-color: #f0f0f0;
+}
+
+.form-footer {
+    margin-top: 2rem;
+}
+
+.form-footer a {
+    font-size: 1.4rem;
+    color: #888;
+    text-decoration: underline;
+}

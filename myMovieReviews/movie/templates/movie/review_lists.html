@@ -10,33 +10,31 @@
 </head>
 <body>
     <header>
-        <h1>my Movie reviews</h1>
+        <h1>my <span style="color:#E63F65;">Movie</span> reviews</h1>
         <a href="{% url 'review_write'%}">Add a New review</a>
     </header>
     <main>
-        <ul>
-            <div id="review_boxes">
-            {% for review in reviews %}
-                <div class="review_cell">
-                    <div class="review_top">
-                        <img src="{%static 'images/f1_theMovie.webp'%}" alt="">
+        <div id="review_boxes">
+        {% for review in reviews %}
+            <div class="review_cell">
+                <div class="review_top">
+                    <img src="{%static 'images/f1_theMovie.webp'%}" alt="">
+                </div>
+                <div class="review_bottom">
+                    <div id="a_box">
+                        <a href="{%url 'review_detail' review.id%}">{{review.title}}</a><!-- 제목 -->
                     </div>
-                    <div class="review_bottom">
-                        <a href="{%url 'review_modify' review.id%}">{{review.title}}</a><!-- 제목 -->
-                        <p>개봉년도 : {{review.title}}</p><!-- 개봉년도 -->
+                    <div id="tags">
+                        <p>개봉년도 : {{review.year}}</p><!-- 개봉년도 -->
                         <p>장르 : {{review.genre}}</p><!-- 장르 -->
                         <p>별점 : {{review.score}}</p><!-- 별점 -->
-                        <form method="POST">
-                            {% csrf_token %}
-                            <button type="submit" name="delete" value="{{review.id}}">삭제</button>
-                        </form>
                     </div>
                 </div>
-            {% empty %}
-                <li>등록된 리뷰가 없습니다.</li>
-            {% endfor %}
             </div>
-        </ul>
+        {% empty %}
+            <li>등록된 리뷰가 없습니다.</li>
+        {% endfor %}
+        </div>
     </main>
 </body>
 </html>
