@@ -1,0 +1,25 @@
+{%extends 'movie/write_modify_base.html'%}
+{%block content%}
+{% csrf_token %}
+
+<p>제목: <input type="text" name="title" value="{{review.title}}" required></p>
+<p>개봉 연도: <input type="number" name="year" value="{{review.year}}" required></p>
+<p>장르: 
+    <select name="genre" required>
+        <option value="" {% if not review.genre %}selected{% endif %}>----------</option>
+        <option value="Action" {% if review.genre == "Action" %}selected{% endif %}>Action</option>
+        <option value="SF" {% if review.genre == "SF" %}selected{% endif %}>SF</option>
+        <option value="Drama" {% if review.genre == "Drama" %}selected{% endif %}>Drama</option>
+        <option value="Comedy" {% if review.genre == "Comedy" %}selected{% endif %}>Comedy</option>
+        <option value="Horror" {% if review.genre == "Horror" %}selected{% endif %}>Horror</option>
+    </select>
+</p>
+<p>별점: <input type="number" name="score" min="0.0" max="5.0" step="0.1" value="{{review.score}}" required></p>
+<p>러닝타임: <input type="number" name="running_time" value="{{review.running_total}}" required></p>
+<p>리뷰</p>
+<textarea name="opinion" id="opinion" cols="50" rows="10" placeholder="리뷰작성" required>{{review.opinion}}</textarea>
+<p>감독: <input type="text" name="director" placeholder="감독이름" value="{{review.director}}" required></p>
+<p>배우: <input type="text" name="hero" placeholder="배우이름 작성" value="{{review.hero}}" required></p>
+
+<button type="submit">Save</button>
+{%endblock%}

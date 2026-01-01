@@ -1,0 +1,45 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documents</title>
+    <link rel="stylesheet" href="{%static 'styles/reset.css'%}">
+    <link rel="stylesheet" href="{%static 'styles/review_detail.css'%}">
+</head>
+<body>
+    <header>
+        <a href="{% url 'review_lists'%}"><h1>my <span style="color:#E63F65;">Movie</span> reviews</h1></a>
+        <a href="{% url 'review_write'%}">Add a New review</a>
+    </header>
+    <section id="review_box">
+        <div id="title_box">
+            <h1 id="title">{{review.title}}</h1>
+            <form method="POST">
+                {%csrf_token%}
+                <a href="{%url 'review_modify' review.id%}">수정</a>
+                <button type="submit" name="delete" value="delete">삭제</button>
+            </form>
+        </div>
+
+        <div class="movie_info_wrapper">
+            <div class="poster_area">
+                <img src="{%static 'images/poster1.jpg'%}" alt="포스터"> 
+            </div>
+            <div class="movie_details">
+                <h5>개봉년도 : {{review.year}}</h5>
+                <h5>감독 : {{review.director}}</h5>
+                <h5>주연 : {{review.hero}}</h5>
+                <h5>장르 : {{review.genre}}</h5>
+                <h5>별점 : {{review.score}}</h5>
+                <h5>러닝타임 : {{review.running_hour}}시간 {{review.running_minute}}분</h5>
+            </div>
+        </div>
+
+        <div id="opinion_box">
+            <p id="opinion">{{review.opinion}}</p>
+        </div>
+    </section>
+</body>
+</html>

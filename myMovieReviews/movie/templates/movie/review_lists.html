@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles/reset.css'%}">
+    <link rel="stylesheet" href="{% static 'styles/review_lists.css' %}">
+    <title>Home</title>
+</head>
+<body>
+    <header>
+        <a href="{% url 'review_lists'%}"><h1>my <span style="color:#E63F65;">Movie</span> reviews</h1></a>
+        <a href="{% url 'review_write'%}">Add a New review</a>
+    </header>
+    <main>
+        <div id="review_boxes">
+        {% for review in reviews %}
+            <div class="review_cell">
+                <div class="review_top">
+                    <img src="{%static 'images/poster1.jpg'%}" alt="">
+                </div>
+                <div class="review_bottom">
+                    <div id="a_box">
+                        <a href="{%url 'review_detail' review.id%}">{{review.title}}</a><!-- 제목 -->
+                    </div>
+                    <div id="tags">
+                        <p>개봉년도 : {{review.year}}</p><!-- 개봉년도 -->
+                        <p>장르 : {{review.genre}}</p><!-- 장르 -->
+                        <p>별점 : {{review.score}}</p><!-- 별점 -->
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <li>등록된 리뷰가 없습니다.</li>
+        {% endfor %}
+        </div>
+    </main>
+</body>
+</html>

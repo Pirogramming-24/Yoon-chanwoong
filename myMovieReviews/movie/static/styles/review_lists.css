@@ -1,0 +1,42 @@
+:root{
+    --grid_nums:4;
+}
+
+#review_boxes{
+    display: grid; grid-template-columns: repeat(var(--grid_nums),1fr); place-items: center;
+    gap:40px;
+    margin:30px 60px 0;
+}
+
+#review_boxes .review_cell{
+    width:180px; height:300px;
+    background-color: #F2F2F2;
+    padding:20px 15px;
+    border-radius: 10px;
+}
+
+#review_boxes .review_cell .review_top{
+    width:90%; height:50%;
+    display: flex; align-items: center; justify-content: center;
+    margin:0 auto;
+}
+
+#review_boxes .review_cell .review_top img{
+    max-width: 100%; max-height: 100%;
+}
+
+#review_boxes .review_cell .review_bottom{
+    width:100%; height:50%;
+}
+#review_boxes .review_cell .review_bottom #a_box{
+    display:flex; justify-content: left; align-items: center;
+    font-size: 2rem; font-weight: 700;
+    height:40%;
+}
+#review_boxes .review_cell .review_bottom #tags{
+    height:60%;
+    display: flex; flex-flow: column nowrap;
+    justify-content: space-between;
+    padding:0 s15px;
+    font-size: 1.4rem;
+}
