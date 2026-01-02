@@ -47,7 +47,10 @@ def modify_page(request,pk):
         devtool_id = request.POST.get('devtool')
         selected_tool = get_object_or_404(Devtool,id=devtool_id)
         idea.title = request.POST.get('title')
-        idea.image = request.FILES.get('image')
+        if 'image' in request.FILES:
+            idea.image = request.FILES.get('image')
+        else:
+            print("새로 업로드된 이미지가 없습니다.")
         idea.content = request.POST.get('content')
         idea.interest = request.POST.get('interest')
         idea.devtool = selected_tool
