@@ -1,0 +1,33 @@
+{%extends 'idea/base.html'%}
+{%load static%}
+{%block head%}
+    <title>modify_page</title>
+    <link rel="stylesheet" href="{%static 'styles/modify_page.css'%}">
+{%endblock%}
+    <!--기능9: 기존 정보 pre-fill
+        - 기존 아이디어 내용이 폼에 삽입되어 있는 상태여야 함
+        - 수정 완료 후 저장 기능 구현 -->
+{%block content%}
+<form method="POST" enctype="multipart/form-data">
+    {%csrf_token%}
+    <label for="title">아이디어 명</label>
+    <input id = title type="text" name="title" value="{{idea.title}}">
+    <label for="content">아이디어 설명</label>
+    <input id = content type="text" name="content" value="{{idea.content}}">
+    <p>image:<br></p>
+    <p>Currently : {{idea.image}}</p>
+    <button type="submit" name="button" value="delete_image">Clear</button>
+    <input type="file" name="image" accept="image/*">
+    <label for="interest">아이디어 관심도</label>
+    <input id = interest type="number" max="5" min="0" step="1" name="interest" value="{{idea.interest}}">
+    <p>예상 개발 툴</p>
+    <select type="text" name="devtool" required>
+        {%for devtool in devtools%}
+            <option name="devtool" value="{{devtool.id}}">{{devtool.name}}</option>
+        {%empty%}
+            <option name="devtool" value="empty">개발툴을 먼저 등록하세요</option>
+        {%endfor%}
+    </select>
+    <button type="submit" name="button" value="save">Submit</button>
+</form>
+{%endblock%}

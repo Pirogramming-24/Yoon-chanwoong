@@ -1,0 +1,23 @@
+{%extends 'idea/base.html'%}
+{%load static%}
+
+{%block head%}
+<title>tool_register_page</title>
+<link rel="stylesheet" href="{%static 'styles/reset.css'%}">
+<link rel="stylesheet" href="{%static 'styles/tool_modify_page.css'%}">
+{%endblock%}
+
+{%block content%}
+<form method="POST">
+    <h1>DevTool Register</h1>
+    <h4>개발툴 관리페이지입니다.</h4>
+    {%csrf_token%}
+    <label for="name">이름:</label>
+    <input id = name type="text" name="name" value="{{devtool.name}}">
+    <label for="kind">종류</label>
+    <input id = kind type="text" name="kind" value="{{devtool.kind}}">
+    <label for="content">개발툴 설명:</label>
+    <textarea id = content name="content">{{devtool.content}}</textarea>
+    <button type="submit" name="button" value="save">Save</button>
+</form>
+{%endblock%}

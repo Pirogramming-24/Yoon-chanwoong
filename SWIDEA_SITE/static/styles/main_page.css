@@ -1,0 +1,72 @@
+:root{
+    --grid_nums:4
+}
+
+#idea_boxes{
+    margin :0 auto; padding: 0 1.5rem; 
+    width:100%; max-width: 1300px;
+    display: grid; grid-template-columns: repeat(var(--grid_nums),1fr);
+    gap:3rem
+}
+
+#idea_boxes .idea_box{
+    height:40rem;
+    padding:3rem;
+    border-radius: 1rem;
+    background-color: #8b8b8b;
+}
+
+#idea_boxes .idea_box form button{
+    background-color: transparent;
+    border:none;
+}
+
+#idea_boxes .idea_box .image_box{
+    height:50%;
+    display: flex; justify-content:center; align-items: center;
+}
+
+#idea_boxes .idea_box .image_box img{
+    max-width: 100%; max-height: 100%;
+}
+
+#idea_boxes .idea_box .content_box{
+    height:50%;
+}
+
+#idea_boxes .idea_box .content_box a{
+    color:#d4ff00;
+    padding:1rem 0;
+    text-align: center;
+    height:20%;
+    font-size: 2rem;
+    display:block; 
+}
+
+#idea_boxes .idea_box .content_box hr{
+    width:80%;
+    margin:0 auto;
+}
+
+#idea_boxes .idea_box .content_box p{
+    font-size: 1.5rem;
+    margin:2rem;
+}
+
+@media (max-width:980px) {
+    :root{
+        --grid_nums:3;
+    }
+}
+
+@media (max-width:840px) {
+    :root{
+        --grid_nums:2;
+    }
+}
+
+@media(max-width:530px){
+    :root{
+        --grid_nums:1;
+    }
+}

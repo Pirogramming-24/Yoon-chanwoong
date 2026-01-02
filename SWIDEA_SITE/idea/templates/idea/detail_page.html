@@ -1,0 +1,53 @@
+{%extends 'idea/base.html'%}
+{%load static%}
+{%block head%}
+    <title>detail_page</title>
+    <link rel="stylesheet" href="{% static 'styles/detail_page.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+{%endblock%}
+    <!-- ### 기능6: 아이디어 정보 표시
+    - 아이디어의 모든 정보 출력
+    - `devtool` 클릭 시 해당 개발툴의 디테일 페이지로 이동
+
+    ### 기능7: 버튼 3종 구현
+    - 삭제 → 삭제 기능
+    - 수정 → 아이디어 수정 페이지 이동
+    - 목록 → 아이디어 관리 페이지로 이동
+
+    ### 기능8: 찜 여부 표시
+    - 현재 사용자의 찜 상태 확인 가능 -->
+{%block content%}
+    <div class="idea_detail">
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" name="zzim" value="{{ idea.id }}">
+                {% if idea.zzim %}
+                    <i class="bi bi-star-fill" style="color: gold;"></i>
+                {% else %}
+                    <i class="bi bi-star"></i>
+                {% endif %}
+            </button>
+        </form>
+        <h1>Idea Detail</h1>
+        <h4>아이디어 세부내용 페이지입니다. 당신이 구현하려 한 아이디어들을 자세히 살펴보세요.</h4>
+        <div id="boxbox">
+            <div class="image_box">
+                <img src="{{idea.image.url}}" alt="">
+            </div>
+            <div class="content_box">
+                <h3 class="title">{{idea.title}}</h3>
+                <p class="interest">1) 아이디어 관심도<br>{{idea.interest}}</p>
+                <p class="devtool">2) 예상 개발 툴<br><a href="{%url 'tool_detail' idea.devtool.id%}">{{idea.devtool.name}}</a></p><!-- 개발툴의 디테일 페이지로 이동 구현해야 함 -->
+                <p class="">3) 아이디어 설명<br>{{idea.content}}</p>
+            </div>
+        </div>
+    </div>
+    <div id="button_box">
+        <form method="POST">
+            {%csrf_token%}
+            <button type="submit" name="button" value="delete">삭제</button>
+        </form>
+        <a href="{%url 'main'%}">목록</a>
+        <a href="{%url 'modify' idea.id%}">수정</a>
+    </div>
+{%endblock%}

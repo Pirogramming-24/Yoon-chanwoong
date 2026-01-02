@@ -1,0 +1,30 @@
+{%extends 'idea/base.html'%}
+{%load static%}
+
+{%block head%}
+<title>tool_register_page</title>
+<link rel="stylesheet" href="{%static 'styles/reset.css'%}">
+<link rel="stylesheet" href="{%static 'styles/tool_register_page.css'%}">
+{%endblock%}
+
+{%block content%}
+<div id="register_box">
+    <h1>DevTool Register</h1>
+    <h4>개발툴 등록페이지입니다. 자신이 다룰 수 있는 개발툴을 등록해 보세요.</h4>
+    <form method="POST">
+        {%csrf_token%}
+        <label for="name">이름:<br></label>
+        <input type="text" id="name" name="name" required><br>
+        <label for="kind">종류:<br></label>
+        <input type="text" id="kind" name="kind" required><br>
+        <label for="content">개발툴 설명:<br></label>
+        <textarea id="content" name="content" required></textarea><br>
+        <button type="submit" name="button" value="submit">Submit</button>
+    </form>
+</div>
+{% if messages %}
+    {% for message in messages %}
+        <script>alert("{{ message }}");</script>
+    {% endfor %}
+{% endif %}
+{%endblock%}
