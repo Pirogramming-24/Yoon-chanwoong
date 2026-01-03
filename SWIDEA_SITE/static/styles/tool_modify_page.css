@@ -1,0 +1,76 @@
+/* 기본 배경 설정 */
+body {
+    display: flex;
+    justify-content: center;
+    padding-top: 80px;
+    margin: 0;
+}
+
+/* 수정 폼 컨테이너 */
+form {
+    background-color: #8b8b8b;  /* 반투명 배경 */
+    backdrop-filter: blur(10px);
+    padding: 50px;
+    width: 550px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form h1 {
+    color: #d4e157;
+    font-size: 26px;
+    margin-bottom: 8px;
+}
+
+form h4{
+    font-size: 14px;
+}
+
+/* 라벨 스타일 */
+label {
+    align-self: flex-start;
+    margin-left: 10%;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    margin-top: 15px;
+}
+
+/* 입력 필드 (input, textarea) 스타일 */
+input[type="text"],
+textarea {
+    width: 80%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid black;
+    background-color: white;
+    color: #333;
+    font-size: 14px;
+}
+
+/* 설명란 (textarea) 높이 조절 */
+textarea {
+    height: 150px;
+    resize: none;
+}
+
+/* 저장 버튼 (SUBMIT) 스타일 */
+button[value="save"] {
+    margin-top: 30px;
+    padding: 10px 50px;
+    background-color: transparent;
+    border: 2px solid #ccc;
+    color: black;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    text-transform: uppercase;
+}
+
+button[value="save"]:hover {
+    background-color: white;
+    color: #333;
+}

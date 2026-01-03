@@ -1,0 +1,77 @@
+body {
+    color: black;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    padding: 60px 0;
+}
+
+main{
+    width:100%;
+}
+
+#Devtool_List {
+    background-color: #8b8b8b; 
+    backdrop-filter: blur(12px); 
+    width: 80%;
+    max-width: 1100px;
+    padding: 40px;
+    border-radius: 5px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+/* 제목 및 설명 스타일 */
+#Devtool_List h1 {
+    color: #d4e157;
+    font-size: 26px;
+    margin-bottom: 8px;
+}
+
+#Devtool_List h4 {
+    font-size: 14px;
+    color: #eee;
+    font-weight: normal;
+    margin:0 auto;
+    margin-bottom: 30px;
+    width:70%;
+}
+
+/* 구분선 스타일 */
+hr {
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    margin: 0;
+}
+
+.tool_box {
+    padding: 18px 10px;
+    transition: background 0.2s;
+}
+
+.tool_box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.tool_box ul li {
+    font-size: 15px;
+    text-align: left;
+    padding: 0 15px;
+}
+.tool_box ul li:nth-child(1) {
+    color:black;
+    width:20%;
+}
+.tool_box ul li:nth-child(2) {
+    color:white;
+    width:20%;
+}
+.tool_box ul li:nth-child(3) {
+    color:black;
+    width:60%;
+}
+

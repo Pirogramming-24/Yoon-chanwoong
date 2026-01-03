@@ -1,0 +1,97 @@
+body {
+    background-image: url('../images/background.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    color: white;
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+}
+
+main{
+    width:100%;
+}
+
+.detail_card {
+    background-color: #8b8b8b;
+    backdrop-filter: blur(10px);
+    width: 80%;
+    max-width: 900px;
+    padding: 40px; margin:0 auto;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.detail_card h1 {
+    color: #d4e157;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.detail_card h4 {
+    font-size: 13px;
+    font-weight: normal;
+    color: #ccc;
+    margin-bottom: 30px;
+}
+
+.info_box {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 30px;
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.info_box h3 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.tool_info {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.tool_info li {
+    font-size: 15px;
+    margin-bottom: 8px;
+    color: #eee;
+}
+
+.sw_list p {
+    color: #d4e157;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.sw_list a {
+    display: block;
+    color: black;
+    text-decoration: none;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.btn_container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.btn_delete, .btn_list, .btn_modify {
+    padding: 8px 25px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 14px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+
+.btn_delete { background-color: #ef5350; color: white; }
+
+.btn_list { background-color: white; color: #333; }
+
+.btn_modify { background-color: #42a5f5; color: white; }

@@ -1,0 +1,89 @@
+/* 기본 배경 및 폰트 설정 */
+body {
+    background-image: url('../images/background.jpg'); /* 공통 배경 이미지 */
+    background-size: cover;
+    background-attachment: fixed;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 50px;
+    margin: 0;
+}
+
+/* 등록 폼 메인 컨테이너 */
+#register_box {
+    background-color: #8b8b8b;
+    padding: 50px;
+    width: 500px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+/* 제목 및 설명 스타일 */
+#register_box h1 {
+    color: #d4e157; /* 상징적인 연두색 */
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+#register_box h4 {
+    font-weight: normal;
+    font-size: 14px;
+    color: #ddd;
+    margin-bottom: 40px;
+}
+
+/* 폼 요소 정렬 */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 라벨 스타일 */
+label {
+    align-self: flex-start;
+    margin-left: 10%;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* 입력창 공통 스타일 (input, textarea) */
+input[type="text"],
+textarea {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #333;
+    background-color: white; /* 이미지처럼 깔끔한 흰색 배경 */
+    color: #333;
+    font-size: 15px;
+}
+
+/* 설명란 전용 스타일 */
+textarea {
+    height: 120px;
+    resize: none; /* 크기 조절 비활성화 */
+}
+
+/* 서브밋 버튼 스타일 */
+button[type="submit"] {
+    margin-top: 20px;
+    padding: 10px 40px;
+    background-color: transparent;
+    border: 2px solid #ccc;
+    color: black;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+button[type="submit"]:hover {
+    background-color: white;
+    color: #333;
+}

@@ -1,0 +1,35 @@
+{%extends 'idea/base.html'%}
+{%load static%}
+{%block head%}
+<title>main_page</title>
+<link rel="stylesheet" href="{% static 'styles/main_page.css'%}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+{%endblock%}
+
+{%block content%}
+<div id="idea_boxes">
+{%for idea in ideas%}
+    <div class="idea_box">
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" name="zzim" value="{{ idea.id }}">
+                {% if idea.zzim %}
+                    <i class="bi bi-star-fill" style="color: gold;"></i>
+                {% else %}
+                    <i class="bi bi-star"></i>
+                {% endif %}
+            </button>
+        </form>
+        <div class="image_box">
+            <img src="{{idea.image.url}}" alt="{{idea.title}}의 이미지">
+        </div>
+        <div class="content_box">
+            <a href="{%url 'detail' idea.id%}">{{idea.title}}</a><!-- 추가해야 함 -->
+            <hr>
+            <p>예상 개발 툴 : {{idea.devtool.name}}</p>
+            <p>아이디어 관심도 : {{idea.interest}}</p> <!-- 추가해야 함 -->
+        </div>
+    </div>
+{%endfor%}
+</div>
+{%endblock%}
