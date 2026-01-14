@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block head %}
+<title>post_create</title>
+<style>
+    main {
+        height: 100vh;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<form action="{% url 'posts:create' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-success">등록하기</button>
+</form>
+<script>
+    const Imageinput = document.getElementById('id_nutrient_photo');
+    const KcalInput = document.querySelector('#id_kcal');
+    const carbohydrateInput = document.querySelector('#id_carbohydrate');
+    const proteinInput = document.querySelector('#id_protein');
+    const fatInput = document.querySelector('#id_fat');
+
+    Imageinput.addEventListener('change',function(){
+        console.log('fetch')
+        const file = this.files[0];
+        if(!file) return;
+
+        const formData = new FormData();
+        formData.append('file',file);
+
+        KcalInput.placeholder = '분석 중...';
+        carbohydrateInput.placeholder = '분석 중...';
+        proteinInput.placeholder = '분석 중...';
+        fatInput.placeholder = '분석 중...';
+
+        fetch('/analyze-image/', {
+            method: 'POST',
+            headers: {
+                // Django가 요구하는 CSRF 토큰 헤더입니다.
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            },
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data) {
+                KcalInput.value = data.kcal;
+                carbohydrateInput.value = data.carb;
+                proteinInput.value = data.pro;
+                fatInput.value = data.fat;
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    });
+</script>
+{% endblock %}
