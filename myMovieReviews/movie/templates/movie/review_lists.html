@@ -11,14 +11,74 @@
 <body>
     <header>
         <a href="{% url 'review_lists'%}"><h1>my <span style="color:#E63F65;">Movie</span> reviews</h1></a>
-        <a href="{% url 'review_write'%}">Add a New review</a>
+        <div class="header-right">
+            <form method="POST" class="tmdb-form">
+                {% csrf_token %}
+                <button type="submit" class="btn-tmdb" name="btn" value="TMDB">
+                    <i class="fas fa-sync-alt"></i> TMDB 불러오기
+                </button>
+            </form>
+            <a href="{% url 'AIPage'%}" class="btn-tmdb">챗봇</a>
+            <a href="{% url 'review_write'%}" class="btn-write">
+                Add a New Review
+            </a>
+        </div>
     </header>
     <main>
+        <div id="search">
+            <form method="POST" class="search-form">
+                {% csrf_token %}
+                <div class="search-container">
+                    <input type="text" id="search_window" name="q" placeholder="영화 제목, 배우 이름, 감독을 입력하세요...">
+                    <button type="submit" name="btn" value="search">
+                        검색
+                    </button>
+                </div>
+            </form>
+        </div>
+        <!-- <div id="array_wrapper">
+            <form method="POST" class="array-form" id="filter_form">
+                {% csrf_token %}
+                <div class="array_container">
+                    <span class="group-title">분류:</span>
+                    <input type="radio" id="all" name="filter" value="all" checked>
+                    <label for="all">전체보기</label>
+
+                    <input type="radio" id="TMDB" name="filter" value="TMDB">
+                    <label for="TMDB">TMDB</label>
+
+                    <input type="radio" id="manual" name="filter" value="manual">
+                    <label for="manual">직접 추가</label>
+                </div>
+            </form>
+
+            <form method="POST" class="array-form-two" id="sort_form">
+                {% csrf_token %}
+                <div class="array_container_two">
+                    <span class="group-title">정렬:</span>
+                    <input type="radio" id="recent_add" name="array_content" value="recent_add" checked>
+                    <label for="recent_add">최신순</label>
+
+                    <input type="radio" id="title" name="array_content" value="title">
+                    <label for="title">제목순</label>
+
+                    <input type="radio" id="score" name="array_content" value="score">
+                    <label for="score">평점순</label>
+
+                    <input type="radio" id="recent" name="array_content" value="recent">
+                    <label for="recent">개봉년도순</label>
+                </div>
+            </form>
+        </div> -->
         <div id="review_boxes">
         {% for review in reviews %}
             <div class="review_cell">
                 <div class="review_top">
-                    <img src="{%static 'images/poster1.jpg'%}" alt="">
+                    {% if review.isTMDB %}
+                    <img src="https://image.tmdb.org/t/p/w500{{ review.image }}" alt="{{ movie.title }}">
+                    {% else %}
+                    <img src="{{review.image.url}}" alt="{{review.title}}">
+                    {% endif %}
                 </div>
                 <div class="review_bottom">
                     <div id="a_box">

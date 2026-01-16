@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TMDB 인기 영화</title>
+    <style>
+        .movie-container { display: flex; flex-wrap: wrap; gap: 20px; }
+        .movie-card { width: 200px; border: 1px solid #ddd; padding: 10px; border-radius: 8px; }
+        .movie-card img { width: 100%; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <h1>현재 인기 영화 목록</h1>
+    <div class="movie-container">
+        {% for movie in movies %}
+            <div class="movie-card">
+                <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" alt="{{ movie.title }}">
+                <h3>{{ movie.title }}</h3>
+                <p>평점: {{ movie.vote_average }}</p>
+                <p>개봉일: {{ movie.release_date }}</p>
+            </div>
+        {% empty %}
+            <p>영화 데이터를 불러올 수 없습니다.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
