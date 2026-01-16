@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles/reset.css'%}">
+    <link rel="stylesheet" href="{% static 'styles/AIchat.css' %}">
+    <title>Home</title>
+</head>
+<body>
+    <header>
+        <a href="{% url 'review_lists'%}"><h1>my <span style="color:#E63F65;">Movie</span> reviews</h1></a>
+        <div class="header-right">
+            <a href="{% url 'AIPage'%}" class="btn-tmdb">챗봇</a>
+            <a href="{% url 'review_write'%}" class="btn-write">
+                Add a New Review
+            </a>
+        </div>
+    </header>
+    <main>
+        <div class="chat_container">
+            <div class="chat_box">
+                <div class="chat_header">
+                    <div class="header_title">
+                        AI 영화 추천 비서
+                    </div>
+                    <form method="POST" style="margin: 0;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn_reset" name="AI" value="reset">
+                            리셋
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="chatting_content" id="chat_scroll">
+                    <div class="message bot">
+                        <div class="bubble">
+                            안녕하세요! 🍿<br>
+                            당신의 영화 컬렉션을 분석해서 딱 맞는 영화를 추천해 드릴게요.<br>
+                            "최근에 추가한 영화들 특징 요약해줘" 혹은 "액션 영화 추천해줘"라고 물어보세요!
+                        </div>
+                    </div>
+                    {%for context in context_lst%}
+                        {% if context.answer %}
+                        <div class="message user">
+                            <div class="bubble">{{ context.user_question }}</div>
+                        </div>
+                        <div class="message bot">
+                            <div class="bubble">{{ context.answer|linebreaksbr }}</div>
+                        </div>
+                        {% endif %}
+                    {%endfor%}
+                </div>
+
+                <form method="POST" class="chat_form">
+                    {% csrf_token %}
+                    <div class="input_wrapper">
+                        <input type="text" name="search_chat" placeholder="메시지를 입력하세요..." required>
+                        <button type="submit" name="AI" value="Go">
+                            전송
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

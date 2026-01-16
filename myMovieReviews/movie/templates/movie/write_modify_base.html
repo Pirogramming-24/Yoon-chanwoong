@@ -11,13 +11,18 @@
 <body>
     <header>
         <a href="{% url 'review_lists'%}"><h1>my <span style="color:#E63F65;">Movie</span> reviews</h1></a>
-        <a href="{% url 'review_write'%}">Add a New review</a>
+        <div class="header-right">
+            <a href="{% url 'AIPage'%}" class="btn-tmdb">챗봇</a>
+            <a href="{% url 'review_write'%}" class="btn-write">
+                Add a New Review
+            </a>
+        </div>
     </header>
     <main class="form-container">
         <div class="form-box">
             <h1 class="form-title">Movie review 🍿</h1>
             <hr class="title-hr">
-            <form action="" method="POST">
+            <form action="" method="POST" enctype="multipart/form-data">
                 {% block content %}
                 {% endblock %}
             </form>
