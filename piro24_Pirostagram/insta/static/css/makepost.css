@@ -1,0 +1,117 @@
+.make-post-container {
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.post-card {
+    background: white;
+    border: 1px solid #dbdbdb;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 500px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.card-header {
+    padding: 10px;
+    border-bottom: 1px solid #dbdbdb;
+    text-align: center;
+}
+
+.card-header h2 {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.post-form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* 이미지 섹션 */
+.image-upload-section {
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #efefef;
+    background-color: #fafafa;
+}
+
+#image-preview {
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #8e8e8e;
+    margin-bottom: 15px;
+    border: 2px dashed #dbdbdb;
+    border-radius: 8px;
+}
+
+/* 기본 파일 인풋 숨기기 */
+#photo {
+    display: none;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #0095f6;
+    color: white;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+/* 내용 섹션 */
+.content-section {
+    padding: 15px;
+}
+
+.user-info-mini {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.mini-avatar {
+    width: 28px;
+    height: 28px;
+    background: #dbdbdb;
+    border-radius: 50%;
+}
+
+.username {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+textarea {
+    width: 100%;
+    height: 120px;
+    border: none;
+    resize: none;
+    outline: none;
+    font-size: 1rem;
+    padding: 5px;
+}
+
+.submit-btn {
+    width: 100%;
+    background: none;
+    border: none;
+    color: #0095f6;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    border-top: 1px solid #efefef;
+}
+
+.submit-btn:hover {
+    color: #00376b;
+}

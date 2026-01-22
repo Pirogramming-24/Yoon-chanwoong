@@ -1,0 +1,295 @@
+/* 1. 전체 레이아웃 설정 */
+body {
+    background-color: #fafafa; /* 인스타 특유의 연한 회색 배경 */
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #262626;
+}
+
+.feed-container {
+    display: flex;
+    justify-content: center;
+    max-width: 935px; /* 인스타 표준 너비 */
+    margin: 30px auto;
+    gap: 28px;
+}
+
+/* 2. 왼쪽 메인 콘텐츠 (스토리 + 피드) */
+#left_content {
+    width: 100%;
+    max-width: 614px;
+}
+
+/* 스토리 섹션 스타일 */
+.story-section {
+    background: white;
+    border: 1px solid #dbdbdb;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 24px;
+}
+
+.story-section h3 {
+    font-size: 14px;
+    margin-bottom: 12px;
+    color: #8e8e8e;
+}
+
+.story-placeholder {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+}
+
+/* 스크롤바 숨기기 */
+.story-placeholder::-webkit-scrollbar {
+    display: none;
+}
+
+.story-circle {
+    width: 66px;
+    height: 66px;
+    border-radius: 50%;
+    padding: 2px;
+    border: 2px solid #e1306c; /* 스토리 외곽선 */
+    background-color: white;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.my-story {
+    border: 2px solid #dbdbdb; /* 내 스토리는 회색 테두리 */
+}
+
+.story-circle img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid white;
+}
+
+/* 3. 게시글(Post) 스타일 */
+.post_box {
+    background: white;
+    border: 1px solid #dbdbdb;
+    border-radius: 8px;
+    margin-bottom: 24px;
+}
+
+.post_header {
+    display: flex;
+    align-items: center;
+    padding: 14px;
+    position: relative;
+}
+
+.mini-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 12px;
+}
+
+.mini-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.post_user_info {
+    display: flex;
+    flex-direction: column;
+}
+
+.post_user_info .id a {
+    font-weight: 600;
+    text-decoration: none;
+    color: #262626;
+    font-size: 14px;
+}
+
+.post_user_info .location {
+    font-size: 12px;
+    color: #8e8e8e;
+}
+
+/* 수정/삭제 버튼 */
+.more-options, .post_header > a {
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: #0095f6;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+/* 게시물 이미지 */
+.post_image_container {
+    width: 100%;
+    background-color: #efefef;
+}
+
+.post_img {
+    width: 100%;
+    display: block;
+}
+
+/* 게시물 하단(Actions, Likes, Content) */
+.post_footer {
+    padding: 12px 16px;
+}
+
+.post_actions {
+    display: flex;
+    justify-content: space-between;
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.left_icons i {
+    margin-right: 16px;
+    cursor: pointer;
+}
+
+.post_likes {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.post_content {
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.username {
+    margin-right: 8px;
+}
+
+.post_date {
+    font-size: 10px;
+    color: #8e8e8e;
+    margin-top: 8px;
+    text-transform: uppercase;
+}
+
+/* 4. 오른쪽 사이드바 스타일 */
+#right_content {
+    width: 293px;
+    position: sticky; /* 스크롤 시 따라옴 */
+    top: 30px;
+    height: fit-content;
+}
+
+.user-profile-brief {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 12px;
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-info .username {
+    display: block;
+    font-weight: 600;
+}
+
+.profile-info .sub-text {
+    color: #8e8e8e;
+    font-size: 12px;
+}
+
+/* 추천 섹션 */
+.recommend-section {
+    padding: 4px 0;
+}
+
+.recommend-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.recommend-header span { color: #8e8e8e; }
+.recommend-header a { text-decoration: none; color: #262626; font-size: 12px; }
+
+.recommend-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+}
+
+.recommend-info {
+    flex: 1;
+}
+
+.recommend-info .id a {
+    text-decoration: none;
+    color: #262626;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.follow-link {
+    text-decoration: none;
+    color: #0095f6;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+/* 5. 정렬 바 스타일 */
+.sort-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: white;
+    border: 1px solid #dbdbdb;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    font-size: 13px;
+}
+
+.sort-form select {
+    padding: 4px;
+    border: 1px solid #dbdbdb;
+    border-radius: 4px;
+}
+
+.sort-form button {
+    background: #3897f0;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* 반응형 설정: 화면이 작아지면 사이드바 숨김 */
+@media (max-width: 1000px) {
+    #right_content {
+        display: none;
+    }
+    .feed-container {
+        margin: 0 auto;
+    }
+}

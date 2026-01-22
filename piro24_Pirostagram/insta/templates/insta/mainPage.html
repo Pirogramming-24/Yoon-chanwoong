@@ -1,0 +1,188 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+<link rel="stylesheet" href="{% static 'css/mainPage.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="feed-container">
+    <section id="left_content">
+        <div class="story-section">
+            <h3>{{ user.username }}'s Stories</h3>
+
+            <div class="story-section">
+                <h3>스토리+</h3>
+                <div class="story-placeholder">
+                    {% for my_story in request.user.story_user.all %}
+                        <div class="story-circle my-story">
+                            <img src="{{ my_story.photo.url }}" alt="My Story">
+                        </div>
+                    {% endfor %}
+
+                    {% for following in request.user.followGuys.all %}
+                        {% for story in following.story_user.all %}
+                            <div class="story-circle">
+                                <img src="{{ story.photo.url }}" alt="{{ following.username }}'s story">
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="sort-bar">
+            <span>게시글 정렬 기준</span>
+            <form method="get" class="sort-form">
+                <select name="gijun" id="gijun">
+                    <option value="1">최신순</option>
+                    <option value="2">좋아요순</option>
+                    <option value="3">댓글순</option>
+                    <option value="4">오래된순</option>
+                </select>
+                <button type="submit">정렬</button>
+            </form>
+        </div>
+
+        <div class="post-feed">
+            {% for post in posts %}
+            <article class="post_box">
+                <header class="post_header">
+                    <div class="mini-avatar">
+                        <img src="{% static 'images/default_image.jpg' %}" alt="프로필">
+                    </div>
+                    <div class="post_user_info">
+                        <span class="id"><a href="{% url 'insta:profile' pk=post.user.id %}">{{ post.user.username }}</a></span>
+                        <span class="location">Seoul, Korea</span> </div>
+                    {% if user == post.user %}
+                        <a href="{%url 'insta:modify' post.id%}">수정</a>
+                        <form method="POST" action="{% url 'insta:mainPage' %}">
+                            {%csrf_token%}
+                            <input type="hidden" name="post_id" value="{{ post.id }}">
+                            <button class="more-options" type="submit" name="btn" value="confirm">삭제</button>
+                        </form>
+                    {% endif %}
+                </header>
+
+                <div class="post_image_container">
+                    {% if post.photo %}
+                        <img src="{{ post.photo.url }}" alt="게시물 사진" class="post_img">
+                    {% else %}
+                        <div class="no_image">
+                            <i class="far fa-image"></i>
+                            <p>이미지가 없습니다</p>
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="post_footer">
+                    <div class="post_actions">
+                        <div class="left_icons">
+                            <i class="{% if user in post.joayo.all %}fas{% else %}far{% endif %} fa-heart like-btn" 
+                            data-post-id="{{ post.id }}" 
+                            style="cursor: pointer; {% if user in post.joayo.all %}color: red;{% endif %}"></i>
+                            <i class="far fa-comment"></i>
+                        </div>
+                        <i class="far fa-bookmark"></i>
+                    </div>
+
+                    <div class="post_likes">
+                        <strong>좋아요 <span id="like-count-{{ post.id }}">{{ post.joayo.count }}</span>개</strong>
+                    </div>
+
+                    <div class="post_content">
+                        <span class="username"><strong>{{ post.user.username }}</strong></span>
+                        <span class="caption">{{ post.content }}</span>
+                    </div>
+
+                    <div class="post_date">
+                        {{ post.created_at|timesince }} 전
+                    </div>
+                </div>
+            </article>
+            {% empty %}
+            <p style="text-align: center; color: #8e8e8e; padding: 50px;">아직 게시글이 없습니다.</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <aside id="right_content">
+        <div class="user-profile-brief">
+            <div class="profile-avatar">
+                {%if user_profile.photo%}
+                <img src="{{user_profile.photo.url}}" alt="프로필 사진">
+                {%else%}
+                <img src="{% static 'images/default_image.jpg' %}" alt="프로필 사진">
+                {%endif%}
+            </div>
+            <div class="profile-info">
+                <span class="username">{{ user.username }}</span>
+                <span class="sub-text">내 프로필 보기</span>
+            </div>
+        </div>
+
+        <div class="recommend-section">
+            <div class="recommend-header">
+                <span>회원님을 위한 추천</span>
+                <a href="#">모두 보기</a>
+            </div>
+            <div class="recommend-list">
+                {% for suggest_user in users %}
+                <div class="recommend-item">
+                    <div class="mini-avatar">
+                        {%if user_profile.photo%}
+                        <img src="{{user_profile.photo.url}}" alt="프로필 사진">
+                        {%else%}
+                        <img src="{% static 'images/default_image.jpg' %}" alt="프로필 사진">
+                        {%endif%}
+                    </div>
+                    <div class="recommend-info">
+                        <span class="id"><a href="{% url 'insta:profile' pk=suggest_user.id %}">{{ suggest_user.username }}</a></span>
+                    </div>
+                    <a href="{% url 'insta:follow' pk=suggest_user.id %}" class="follow-link">팔로우</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </aside>
+</div>
+
+<script>
+    document.querySelectorAll('.like-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const postId = this.getAttribute('data-post-id');
+            const likeCountSpan = document.getElementById(`like-count-${postId}`);
+            const icon = this;
+
+            // AJAX 요청
+            fetch("{% url 'insta:post_like_ajax' %}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                    "X-CSRFToken": "{{ csrf_token }}" // Django CSRF 토큰
+                },
+                body: `post_id=${postId}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                // 1. 좋아요 숫자 업데이트
+                likeCountSpan.innerText = data.like_count;
+
+                // 2. 아이콘 모양 및 색상 변경
+                if (data.message === "added") {
+                    icon.classList.remove('far');
+                    icon.classList.add('fas');
+                    icon.style.color = 'red';
+                } else {
+                    icon.classList.remove('fas');
+                    icon.classList.add('far');
+                    icon.style.color = 'black';
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    });
+</script>
+{% endblock %}

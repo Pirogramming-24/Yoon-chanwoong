@@ -1,0 +1,42 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MainPage</title>
+    <link rel="stylesheet" href="{%static 'css/base.css'%}">
+    {%block header%}{%endblock%}
+</head>
+<body>
+    <main>
+        <div id="sidebar">
+            <h3>Pirostagramming</h3>
+            <a href="{%url 'insta:mainPage'%}">🏠 홈</a>
+            <form method="GET">
+                <label for="postSearch">게시글 검색</label>
+                <div class="search-container">
+                    <input type="text" name="postSearch" id="postSearch" placeholder="검색어를 입력하세요...">
+                    <button type="submit">Go</button>
+                </div>
+            </form>
+            <form method="GET">
+                <label for="userSearch">유저 검색</label>
+                <div class="search-container">
+                    <input type="text" name="userSearch" id="userSearch" placeholder="유저 아이디...">
+                    <button type="submit">Go</button>
+                </div>
+            </form>
+
+            <a href="{%url 'insta:makepost'%}">➕ 게시글 만들기</a>
+            <a href="{%url 'insta:profile' pk=user.id %}">👤 프로필</a>
+            <a href="{%url 'user:logout'%}">👋 로그아웃</a>
+        </div>
+
+        <div id="main_content">
+            {%block content%}
+            {%endblock%}
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    <header id="userinfo">
+        <div id="userImage">
+            {%if user_profile.photo%}
+            <img src="{{user_profile.photo.url}}" alt="프로필 사진">
+            {%else%}
+            <img src="{% static 'images/default_image.jpg' %}" alt="프로필 사진">
+            {%endif%}
+        </div>
+        
+        <div id="usertexts">
+            <div id="username_follow">
+                <span id="username">{{user_profile.username}}</span>
+                <form method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="follow-btn">팔로우</button>
+                </form>
+            </div>
+            
+            <div id="user_popular">
+                <span id="gesi">게시물 <b>0</b></span>
+                <span id="followers">팔로워 <b>{{user_profile.followers.count}}</b></span>
+                <span id="follow_people">팔로우 <b>{{user_profile.followGuys.count}}</b></span>
+            </div>
+            
+            <div id="sogae">
+                <p class="real-name">피로그래머</p>
+                <p class="bio">소개글이 없습니다. 첫 번째 소개글을 작성해보세요! ✨</p>
+            </div>
+        </div>
+    </header>
+
+    <div id="images-grid">
+        {%if post.photo%}
+        {%for post in posts%}
+        <div class="post-item"><img src="{{post.photo.url}}"></div>
+        {%endfor%}
+        {%endif%}
+        
+    </div>
+</div>
+{% endblock %}
