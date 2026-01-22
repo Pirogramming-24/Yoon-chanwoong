@@ -7,6 +7,9 @@ User = get_user_model()
 
 # Create your views here.
 
+def login_to(request):
+    return redirect('user:login',pk=0)
+
 def login(request,pk):
     if request.method == "POST":
         username = request.POST.get('username')
