@@ -1,0 +1,29 @@
+{%extends 'base.html'%}
+{%load static%}
+
+{%block header%}
+<link rel="stylesheet" href="{%static 'css/login.css'%}">
+{%endblock%}
+
+{%block content%}
+    <div class="login-page">
+        <div class="login-container">
+            <h2>LOGIN</h2>
+            <form method="POST">
+                {% csrf_token %}
+                
+                <div class="input-group">
+                    <label for="username">사용자 이름</label>
+                    <input type="text" id="username" name="username" placeholder="아이디를 입력하세요" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">비밀번호</label>
+                    <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요" required>
+                </div>
+
+                <button type="submit" class="login-btn">LOGIN</button>
+            </form>
+        </div>
+    </div>
+{%endblock%}

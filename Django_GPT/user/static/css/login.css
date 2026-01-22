@@ -1,0 +1,86 @@
+/* 1. 레이아웃: 화면 전체 중앙 정렬 */
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: calc(100vh - 80.67px);
+    background-color: #f8f9fa; /* 배경은 눈이 편한 연회색 */
+}
+
+/* 2. 로그인 박스 컨테이너 */
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 40px;
+    background-color: #ffffff;
+    border: 1px solid #e1e1e1;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+/* 3. 타이틀 (LOGIN) */
+.login-container h2 {
+    font-size: 28px;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 30px;
+    letter-spacing: -0.5px;
+}
+
+/* 4. 입력 그룹 간격 */
+.input-group {
+    margin-bottom: 20px;
+}
+
+/* 5. 라벨 스타일 */
+.input-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    /* reset.css에서 color가 검정으로 잡혀있어 별도 지정 불필요 */
+}
+
+/* 6. 입력창 스타일 (box-sizing 덕분에 padding을 줘도 너비가 유지됨) */
+.input-group input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 15px;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+/* 입력창 포커스 시 효과 */
+.input-group input:focus {
+    border-color: #000000;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05);
+}
+
+/* 7. 로그인 버튼 스타일 */
+.login-btn {
+    width: 100%;
+    padding: 16px;
+    margin-top: 10px;
+    background-color: #000000; /* 검정 배경 */
+    color: #ffffff !important; /* reset.css의 검정 글자를 흰색으로 강제 변경 */
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    bottom: 0;
+}
+
+/* 버튼 호버 시 효과 */
+.login-btn:hover {
+    background-color: #333333;
+}
+
+/* 버튼 클릭 시 눌리는 효과 */
+.login-btn:active {
+    transform: scale(0.98);
+}
