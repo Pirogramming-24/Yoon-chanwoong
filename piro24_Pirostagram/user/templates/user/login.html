@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 서비스 로그인</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{%static 'css/login.css'%}">
+</head>
+<body>
+    <div class="login-card">
+        <h2>LOGIN</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="input-group">
+                <input type="text" name="username" placeholder="아이디" required>
+            </div>
+            <div class="input-group">
+                <input type="password" name="password" placeholder="비밀번호" required>
+            </div>
+            <button type="submit">접속하기</button>
+        </form>
+    </div>
+</body>
+</html>

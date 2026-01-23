@@ -1,0 +1,44 @@
+{%extends "base.html"%}
+{% load static %}
+
+{%block header%}
+<link rel="stylesheet" href="{%static 'css/one.css'%}">
+{%endblock%}
+
+{% block content %}
+<div class="chat-container">
+    <div class="chat-history" id="chat-history">
+        <div class="message ai-message">
+            <strong>Sentimetal AI</strong>
+            안녕하세요! 감정을 분석해서 평점으로 나타내 줘요!<br>
+            영어로 입력하는 게 정확도가 더 높답니다!
+        </div>
+
+        {% for answer in answers %}
+            <div class="message user-message">
+                {{ answer.article }}
+            </div>
+            <div class="message ai-message">
+                <strong>Sentimetal AI</strong>
+                {{ answer.output }}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="chat-input-area">
+        <form method="POST" class="chat-form">
+            {% csrf_token %}
+            <input type="text" name="search" class="chat-input" placeholder="메시지를 입력하세요..." required autocomplete="off">
+            <button type="submit" class="send-btn" value="btn" name="btn">보내기</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    // 페이지 로드 시 스크롤을 항상 최하단으로 이동
+    const chatHistory = document.getElementById('chat-history');
+    window.onload = () => {
+        chatHistory.scrollTop = chatHistory.scrollHeight;
+    };
+</script>
+{% endblock %}

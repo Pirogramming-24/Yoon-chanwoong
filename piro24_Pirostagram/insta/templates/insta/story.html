@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+<style>
+    /* 전체 페이지의 배경과 기본 폰트 설정 */
+    body {
+        margin: 0;
+        color: white;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    .story-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh; /* 화면 전체 높이를 사용 */
+        padding: 20px;
+    }
+
+    .story-card {
+        background-color: white; /* 카드 배경색 */
+        width: 100%;
+        max-width: 400px; /* 모바일 사이즈로 고정 */
+        border: 1px solid #363636;
+        border-radius: 12px;
+        padding: 30px;
+        text-align: center;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    }
+
+    .story-card h2 {
+        font-size: 1.5rem;
+        margin-bottom: 25px;
+    }
+
+    .image-preview-zone {
+        width: 100%;
+        aspect-ratio: 9 / 16; /* 인스타 스토리 비율 (9:16) */
+        border: 2px dashed #363636;
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+        overflow: hidden;
+        background-color: white;
+        color: #8e8e8e;
+    }
+
+    .image-preview-zone img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* 버튼 스타일 정돈 */
+    .button-group {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .select-label {
+        background-color: #0095f6; /* 인스타 블루 */
+        color: white;
+        padding: 10px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: opacity 0.2s;
+    }
+
+    .upload-btn {
+        background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        border: none;
+        color: white;
+        padding: 12px;
+        border-radius: 8px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .select-label:hover, .upload-btn:hover {
+        opacity: 0.8;
+    }
+
+    #photo-input {
+        display: none;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="story-wrapper">
+    <div class="story-card">
+        <h2>Create New Story</h2>
+        
+        <form action="{% url 'insta:makestory' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="image-preview-zone" id="preview-zone">
+                <p id="placeholder-text">Image Preview</p>
+            </div>
+
+            <div class="button-group">
+                <label for="photo-input" class="select-label">Select from Computer</label>
+                <input type="file" name="photo" id="photo-input" accept="image/*" required>
+                <button type="submit" class="upload-btn">Share to Story</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    const photoInput = document.getElementById('photo-input');
+    const previewZone = document.getElementById('preview-zone');
+
+    photoInput.addEventListener('change', function() {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                previewZone.innerHTML = `<img src="${e.target.result}" alt="Preview">`;
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
+{% endblock %}

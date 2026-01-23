@@ -1,0 +1,119 @@
+/* 전체 컨테이너 */
+.profile-container {
+    max-width: 935px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+/* 상단 정보 영역 */
+#userinfo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 44px;
+    padding-bottom: 20px;
+}
+
+#userImage {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    margin-right: 30px;
+}
+
+#userImage img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #dbdbdb;
+}
+
+#usertexts {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* 이름 및 버튼 */
+#username_follow {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+#username {
+    font-size: 28px;
+    font-weight: 300;
+}
+
+.follow-btn {
+    background-color: #0095f6;
+    color: white;
+    border: none;
+    padding: 7px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.follow-btn:hover {
+    background-color: #1877f2;
+}
+
+/* 통계 정보 */
+#user_popular {
+    display: flex;
+    gap: 40px;
+    font-size: 16px;
+}
+
+#user_popular span b {
+    font-weight: 600;
+}
+
+/* 소개글 */
+#sogae .real-name {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+#sogae .bio {
+    font-size: 14px;
+    color: #262626;
+}
+
+/* 이미지 그리드 (인스타 스타일) */
+#images-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3열 고정 */
+    gap: 28px; /* 칸 사이 간격 */
+    border-top: 1px solid #dbdbdb;
+    padding-top: 50px;
+}
+
+.post-item {
+    aspect-ratio: 1 / 1; /* 정사각형 유지 */
+    overflow: hidden;
+    background-color: #efefef;
+    cursor: pointer;
+}
+
+.post-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s;
+}
+
+.post-item:hover img {
+    opacity: 0.8;
+}
+
+/* 반응형 (화면이 작아질 때) */
+@media (max-width: 735px) {
+    #userImage img { width: 90px; height: 90px; }
+    #user_popular { gap: 20px; font-size: 14px; }
+    #images-grid { gap: 3px; }
+}

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+<link rel="stylesheet" href="{% static 'css/makepost.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="make-post-container">
+    <div class="post-card">
+        <div class="card-header">
+            <h2>새 게시물 만들기</h2>
+        </div>
+        
+        <form method="POST" enctype="multipart/form-data" class="post-form">
+            {% csrf_token %}
+            
+            <div class="image-upload-section">
+                <div id="image-preview">
+                    <p>사진을 선택하면 여기에 표시됩니다.</p>
+                </div>
+                <label for="photo" class="custom-file-upload">
+                    컴퓨터에서 선택
+                </label>
+                <input type="file" name="photo" id="photo" accept="image/*" onchange="previewImage(this);">
+            </div>
+
+            <div class="content-section">
+                <div class="user-info-mini">
+                    <div class="mini-avatar"></div>
+                    <span class="username">{{ user.username }}</span>
+                </div>
+                <textarea name="content" id="content" placeholder="문구 입력..." required></textarea>
+                
+                <button type="submit" class="submit-btn">공유하기</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+function previewImage(input) {
+    const preview = document.getElementById('image-preview');
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            preview.innerHTML = `<img src="${e.target.result}" style="max-width: 100%; max-height: 400px; border-radius: 8px;">`;
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+</script>
+{% endblock %}

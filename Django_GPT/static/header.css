@@ -1,0 +1,78 @@
+/* 1. 헤더 전체 레이아웃 */
+header {
+    width: 100%;
+    background-color: #ffffff;
+    border-bottom: 1px solid #eeeeee;
+    padding: 0 40px; /* 좌우 여백 */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav {
+    max-width: 1400px;
+    margin: 0 auto;
+    height: 80px; /* 네비게이션 높이 */
+    display: flex;
+    justify-content: space-between; /* MAIN과 AI_Models를 양 끝으로 배분 */
+    align-items: center;
+}
+
+/* 2. 로고 (MAIN) 스타일 */
+nav > a {
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    /* reset.css 영향으로 기본 색상은 검정 */
+}
+
+/* 3. 오른쪽 메뉴 그룹 (AI_Models) */
+#AI_Models {
+    display: flex;
+    align-items: center;
+    gap: 30px; /* 메뉴 간 간격 */
+}
+
+#AI_Models a {
+    font-size: 15px;
+    font-weight: 500;
+    color: #444444;
+    transition: all 0.2s ease;
+}
+
+#AI_Models a:hover {
+    color: #000000;
+}
+
+/* 4. 로그인 & 로그아웃 버튼 (캡슐 형태) */
+#AI_Models #logout, 
+#AI_Models #login {
+    background-color: #000000; /* 검정 배경 */
+    color: #ffffff !important; /* 글자색 흰색 강제 */
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 13px;
+    margin-left: 10px; /* 다른 메뉴와 조금 더 거리 두기 */
+}
+
+#AI_Models #logout:hover, 
+#AI_Models #login:hover {
+    background-color: #333333; /* 호버 시 약간 밝은 검정 */
+    transform: translateY(-1px); /* 살짝 떠오르는 효과 */
+}
+
+/* 5. 비활성화된 메뉴 스타일 (href가 비어있는 경우) */
+#AI_Models a[href=""] {
+    color: #cccccc;
+    cursor: not-allowed; /* 금지 표시 커서 */
+    pointer-events: none; /* 클릭 이벤트 차단 */
+    position: relative;
+}
+
+/* 비활성화된 메뉴 옆에 작은 자물쇠 느낌 주기 (선택사항) */
+#AI_Models a[href=""]::after {
+    content: " 🔒";
+    font-size: 10px;
+    vertical-align: middle;
+}
